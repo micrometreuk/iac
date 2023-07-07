@@ -1,0 +1,11 @@
+- name: Install Prerequisites.
+  apt: name=aptitude update_cache=yes state=present force_apt_get=yes
+
+- name: Install required system packages
+  apt: name={{ sys_packages }} state=present
+
+- name: Update apt.
+  apt: update_cache=yes force_apt_get=yes
+
+- name: Upgrade all apt packages.
+  apt: upgrade=dist force_apt_get=yes

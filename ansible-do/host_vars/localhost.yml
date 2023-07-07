@@ -1,0 +1,7 @@
+
+---
+ansible_connection: "local" 
+ansible_user: "umetre" 
+ansible_become_pass: '{{umetre_pass}}'
+ansible_python_interpreter: "/usr/bin/python"
+ansible_ssh_private_key_file: "~/.ssh/id_rsa" 

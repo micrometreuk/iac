@@ -1,0 +1,20 @@
+#cloud-config
+# Add groups to the system
+# Adds the ubuntu group with members 'root' and 'sys'
+# and the empty group hashicorp.
+# Add users to the system. Users are added after groups are added.
+users:
+  - name: admin
+    ssh_import_id:
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnUxXyRfAyhF/rEXwmWkup+pDrAArlqiGlwxcD/meSZdr0/aC0RuHtQIonjXpik8oQgGVd7KFC1y22f8cDs2CMF/XyA/05ZpYk79Ye27sjkP5eYx2Dkp/N1NOtzRa3aUtpz5Qhllx9lTuh4vHuNyoo0cBF+0HA2//W/wjXURsZZn3WJPrZ3SFyNKCxjUmq80rXyvSes5nVj8NtyKqbyOSGdTe0WgySiM30zAcj7BmqifE9cRc3/Wz+JJAsXtlUTpt2xounfvx0lb/1iaOMb3B8jOIGXA1w6hjCXavVEmo7ff/cyDQ0FLqJtiReP12UC50M3M4ALHi98ulG9hJe7IE/ ubuntu@flow
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash   
+# Downloads the golang package
+packages:
+  - vim
+runcmd:
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers warsong' /etc/ssh/sshd_config
+  - restart ssh"}    

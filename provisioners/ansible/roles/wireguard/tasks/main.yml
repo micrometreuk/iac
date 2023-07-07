@@ -1,0 +1,15 @@
+    - name: Install Prerequisites
+      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes    
+
+    - name: Install required system packages
+      apt: name={{ sys_packages }} state=latest        
+     
+    - name: Add wireguard ppa
+      apt_repository:
+        repo: ppa:wireguard/wireguard     
+   
+    - name: Install required wireguard packages
+      apt: name={{ wg_packages }} state=latest      

@@ -1,0 +1,22 @@
+{
+    "builders": [
+        {
+       "type": "digitalocean",
+       "api_token": "{{user `do_token`}}",
+       "image": "{{user `base_system_image`}}",
+       "region": "{{user `region`}}",
+       "size": "{{user `size`}}",
+       "ssh_username": "root"
+        }
+    ],
+   
+
+
+    "provisioners": [
+        {
+      "type": "ansible",
+      "playbook_file": "./playbook.yml"
+        }
+    ]
+
+}

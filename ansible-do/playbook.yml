@@ -1,0 +1,25 @@
+---
+#common
+-   hosts: digitalocean
+    become: true
+    roles:
+    # doprovision
+    tags: create droplets
+
+-   hosts: digitalocean
+    become: true
+    roles:
+    - domains
+    tags: create dns records
+
+-   hosts: web
+    become: true
+    roles:
+    # update 
+    # users
+    # ufw
+    # fail2ban  
+    # lb 
+    # docker  
+    # certbot
+    tags: configure droplets  

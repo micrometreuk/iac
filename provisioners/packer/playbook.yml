@@ -1,0 +1,8 @@
+- name: playbook for roles
+  hosts: default
+  become: True
+
+  roles:
+    - role: init
+      tags: initail_server 
+

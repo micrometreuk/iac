@@ -1,0 +1,22 @@
+- name: Make sure we have a 'wheel' group
+  group:
+    name: wheel
+    state: present
+
+- name: Create a new regular user with sudo privileges
+  user:
+    name: "{{ item }}"
+    password: "{{ password | password_hash('sha512') }}"
+    state: present
+    groups: sudo
+    append: true
+    create_home: true
+    shell: /bin/bash
+  with_items: "{{ create_users }}"
+
+- name: Set authorized key for remote user
+  authorized_key:
+    user: "{{ item }}"
+    state: present
+    key: "{{ copy_local_key }}"
+  with_items: "{{ create_users }}"

@@ -1,0 +1,5 @@
+---
+create_users:
+    - warsong
+copy_local_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+

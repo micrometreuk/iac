@@ -1,0 +1,32 @@
+---
+- name: install
+  apt:
+    name: "{{ fail2ban_dependencies }}"
+    state: "present"
+    update_cache: true
+
+- name: add wordpress docker fail2ban filter file
+  copy:
+    src: wplogin.conf
+    dest: /etc/fail2ban/filter.d
+    owner: root
+    group: root
+    mode: 0644      
+
+- name: add wordpress docker fail2ban configuration file
+  copy:
+    src: wordpress-docker.conf
+    dest: /etc/fail2ban/jail.d
+    owner: root
+    group: root
+    mode: 0644      
+
+- name: add docker fail2ban action file
+  copy:
+    src: docker-action.conf
+    dest: /etc/fail2ban/action.d
+    owner: root
+    group: root
+    mode: 0644      
+  notify: 
+    - restart fail2ban

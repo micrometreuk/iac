@@ -1,0 +1,15 @@
+- become: yes
+  hosts: all
+  name: apache-install
+  tasks:
+    - name: Add the user 'sammy' and add it to 'sudo'
+      user:
+        name: sammy
+        group: sudo
+        
+    - name: Add SSH key to 'sammy'
+      authorized_key:
+        user: sammy
+        state: present
+        key: "{{ lookup('file', pub_key) }}"
+        

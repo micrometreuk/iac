@@ -1,0 +1,26 @@
+---
+- name: install
+  apt:
+    name: "{{haproxy_dependencies}}"
+    state: "present"
+    update_cache: true
+
+- name: enable haproxy
+  lineinfile: dest=/etc/default/haproxy regexp="^ENABLED" line="ENABLED=1"
+  notify: restart haproxy 
+
+- name: deploy haproxy config
+  copy: 
+    src: haproxy.cfg 
+    dest: /etc/haproxy/haproxy.cfg
+  notify: restart haproxy
+
+- name: "Create required directories in /etc/letsencrypt"
+  file:
+    path: "/etc/haproxy/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=x,o=x
+  with_items:
+  - certs

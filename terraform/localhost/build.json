@@ -1,0 +1,29 @@
+{
+  "builders": [
+    {
+      "type": "qemu",
+
+      "iso_urls": [
+        "CentOS-7-x86_64-Minimal-2003.iso",
+        "http://mirrors.mit.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso"
+      ],
+      "iso_checksum": "sha256:659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193",
+      "output_directory": "output_centos_tdhtest",
+      "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+      "disk_size": "5000M",
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "http_directory": "path/to/httpdir",
+      "ssh_username": "root",
+      "ssh_password": "s0m3password",
+      "ssh_timeout": "20m",
+      "vm_name": "tdhtest",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos6-ks.cfg<enter><wait>"
+      ]
+    }
+  ]
+}

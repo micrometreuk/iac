@@ -1,0 +1,7 @@
+---
+copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+sys_packages: [ 'curl', 'vim', 'git', 'ufw', "apt-transport-https", "ca-certificates", "gnupg2", "software-properties-common", "python"]
+wg_packages: ["wireguard-dkms", "wireguard-tools"]
+ansible_port: 2244
+ansible_user: warsong
+ansible_python_interpreter: /usr/bin/python3

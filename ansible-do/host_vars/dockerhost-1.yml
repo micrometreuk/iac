@@ -1,0 +1,8 @@
+---
+ansible_user: root
+ansible_connection: ssh
+ansible_host: dockerhost-1  
+ansible_become_pass: '{{warsong2_pass}}'
+ansible_python_interpreter: "/usr/bin/python3"
+ansible_ssh_private_key_file: "~/.ssh/id_rsa" 
+password: '{{warsong_pass}}'
